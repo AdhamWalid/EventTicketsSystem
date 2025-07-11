@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us | MyTicket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        .about-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #4a90e2;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .about-content h1 {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">MyTicket</div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/events">Events</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <button id="themeToggle">Toggle Theme</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN SECTION -->
+    <main>
+        <section class="about-content">
+            <h1>About Us</h1>
+            <p>
+                <strong>MyTicket</strong> is your trusted platform for discovering and booking tickets to the best events in town —
+                from concerts and sports matches to theater and cultural festivals. Our goal is to simplify your ticketing
+                experience by making it easy, fast, and secure.
+            </p>
+            <p>
+                Since our founding in 2025, we’ve helped thousands of fans connect with unforgettable experiences across Malaysia.
+                With a modern design, intuitive search tools, and reliable payment systems, we ensure that you spend less time
+                stressing and more time enjoying.
+            </p>
+            <p>
+                At MyTicket, we believe in more than just tickets — we believe in moments. That’s why we’re constantly innovating
+                to deliver the best event-discovery and booking experience possible.
+            </p>
+            <p>
+                Thank you for being a part of the MyTicket journey. We’re excited to help you create lasting memories.
+            </p>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2025 MyTicket. All rights reserved.
+    </footer>
+
+    <!-- THEME TOGGLE SCRIPT -->
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyTicket - Buy Tickets Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">MyTicket</div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/events">Events</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <button id="themeToggle">Toggle Theme</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN SECTION -->
+    <main>
+        <div class="form-container">
+            <!-- Ticket Search Box -->
+            <div class="form-box">
+                <h2>Find Your Event</h2>
+                <form action="/search" method="GET">
+                    <div class="input-group">
+                        <input type="text" name="event" placeholder="Search for event, artist, or venue" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="date" name="date">
+                    </div>
+                    <button type="submit" class="btn">Search Tickets</button>
+                </form>
+            </div>
+
+            <!-- Ticket Purchase/Login Box -->
+            <div class="form-box">
+                <h2>Buy Tickets</h2>
+                <form action="/purchase" method="POST">
+                    <div class="input-group">
+                        <input type="text" name="name" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="eventSelect">Choose an event:</label>
+                        <select name="eventTitle" id="eventSelect">
+                        <% if (events && events.length > 0) { %>
+                            <% events.forEach(event => { %>
+                            <option value="<%= event.title %>"><%= event.title %></option>
+                            <% }) %>
+                        <% } else { %>
+                            <option disabled selected>No events available</option>
+                        <% } %>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <input type="number" name="ticketCount" placeholder="Number of Tickets" min="1" required>
+                    </div>
+                    <button type="submit" class="btn">Purchase Now</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- ALERT CONTAINER -->
+    <div id="alertContainer"></div>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2025 MyTicket. All rights reserved.
+    </footer>
+
+    <!-- THEME TOGGLE SCRIPT -->
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // Example alert function
+        function showAlert(message) {
+            const alertContainer = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.classList.add('alert');
+            alert.innerText = message;
+            alertContainer.appendChild(alert);
+
+            setTimeout(() => alert.classList.add('hide'), 3000);
+            setTimeout(() => alert.remove(), 3500);
+        }
+    </script>
+</body>
+</html>
