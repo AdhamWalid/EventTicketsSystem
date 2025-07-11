@@ -28,7 +28,7 @@
     <main>
         <div class="form-container">
             <!-- Ticket Search Box -->
-            <div class="form-box">
+            <!-- <div class="form-box">
                 <h2>Find Your Event</h2>
                 <form action="/search" method="GET">
                     <div class="input-group">
@@ -39,36 +39,53 @@
                     </div>
                     <button type="submit" class="btn">Search Tickets</button>
                 </form>
-            </div>
+            </div> -->
 
             <!-- Ticket Purchase/Login Box -->
-            <div class="form-box">
-                <h2>Buy Tickets</h2>
-                <form action="/purchase" method="POST">
-                    <div class="input-group">
-                        <input type="text" name="name" placeholder="Full Name" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="email" name="email" placeholder="Email Address" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="eventSelect">Choose an event:</label>
-                        <select name="eventTitle" id="eventSelect">
-                        <% if (events && events.length > 0) { %>
-                            <% events.forEach(event => { %>
-                            <option value="<%= event.title %>"><%= event.title %></option>
-                            <% }) %>
-                        <% } else { %>
-                            <option disabled selected>No events available</option>
-                        <% } %>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <input type="number" name="ticketCount" placeholder="Number of Tickets" min="1" required>
-                    </div>
-                    <button type="submit" class="btn">Purchase Now</button>
-                </form>
+<!-- Ticket Purchase Box with Image -->
+<div class="form-box" style="max-width: 850px;">
+    <h2>Buy Tickets</h2>
+    <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+        <!-- Image Preview -->
+        <div style="flex: 1; min-width: 250px;">
+            <img id="eventImagePreview" 
+                src="<%= events[0] ? events[0].imageUrl : '' %>" 
+                alt="Event Image" 
+                style="width: 100%; height: 100%; border-radius: 10px; object-fit: cover;">
+        </div>
+
+        <!-- Form Fields -->
+        <form action="/purchase" method="POST" style="flex: 1; min-width: 250px;">
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Full Name" required>
             </div>
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-group">
+                <label for="eventSelect">Choose an event:</label>
+                <select name="eventTitle" id="eventSelect" required>
+                    <% if (events && events.length > 0) { %>
+                        <% events.forEach(event => { %>
+                            <option 
+                              value="<%= event.title %>" 
+                              data-img="<%= event.imageUrl %>">
+                              <%= event.title %>
+                            </option>
+                        <% }) %>
+                    <% } else { %>
+                        <option disabled selected>No events available</option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="input-group">
+                <input type="number" name="ticketCount" placeholder="Number of Tickets" min="1" required>
+            </div>
+            <button type="submit" class="btn">Purchase Now</button>
+        </form>
+    </div>
+</div>
+
         </div>
     </main>
 
@@ -81,23 +98,34 @@
     </footer>
 
     <!-- THEME TOGGLE SCRIPT -->
-    <script>
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-        });
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+    });
 
-        // Example alert function
-        function showAlert(message) {
-            const alertContainer = document.getElementById('alertContainer');
-            const alert = document.createElement('div');
-            alert.classList.add('alert');
-            alert.innerText = message;
-            alertContainer.appendChild(alert);
+    // Show alert messages
+    function showAlert(message) {
+        const alertContainer = document.getElementById('alertContainer');
+        const alert = document.createElement('div');
+        alert.classList.add('alert');
+        alert.innerText = message;
+        alertContainer.appendChild(alert);
 
-            setTimeout(() => alert.classList.add('hide'), 3000);
-            setTimeout(() => alert.remove(), 3500);
-        }
-    </script>
+        setTimeout(() => alert.classList.add('hide'), 3000);
+        setTimeout(() => alert.remove(), 3500);
+    }
+
+    // 👇 Event image changer
+    const eventSelect = document.getElementById('eventSelect');
+    const imagePreview = document.getElementById('eventImagePreview');
+
+    eventSelect.addEventListener('change', () => {
+        const selectedOption = eventSelect.options[eventSelect.selectedIndex];
+        const newImageUrl = selectedOption.getAttribute('data-img');
+        imagePreview.src = newImageUrl;
+    });
+</script>
+
 </body>
 </html>

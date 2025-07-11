@@ -44,7 +44,11 @@ app.set("views", path.join(__dirname, "views"));
 // Multer for profile picture upload
 
 // Routes
-app.get("/", (req, res) => res.redirect("/home"));
+app.get("/", async (req, res) => {
+  const events = await Event.find().sort({ date: -1 });
+  res.render("index", { events });
+});
+
 app.get("/contact", (req, res) => {
   const success = req.query.success === "1";
   res.render("contact", { success });
