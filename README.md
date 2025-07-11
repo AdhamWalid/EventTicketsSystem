@@ -1,69 +1,134 @@
-# Valco 
+## 🎫 MyTicket – Online Ticket Booking Platform
 
-A fully-featured chat environment for students, where users can interact in real-time, personalize their profiles, and enjoy enhanced features for a more engaging experience. Built with **MongoDB**, **Express**, **EJS** and **Socket.IO**
-
----
-
-## Features
-
-- **Responsive Login & Sign-Up Pages** with MongoDB integration for secure data storage
-- **Real-Time Chat Interface** where users can interact with others
-- **Profile Management** with customizable options (username, email, password, profile picture)
-- **Moderation Tools** for admins to maintain a safe environment
-- **AI-Powered Features** including message translation and badging system
+MyTicket is a modern, responsive ticket booking web application that allows users to browse and purchase tickets for events happening in **Malaysia**. The site supports dark mode, live event listings, and user interaction via a styled contact form. It uses **Node.js**, **Express**, **MongoDB**, and **EJS** for server-side rendering.
 
 ---
 
-## Project Status
+### 📌 Features
 
-**Complete**
+* 🔍 **Search Events** by name or date
+* 🎟️ **Purchase Tickets** through a styled form
+* 🗂️ **View Events** dynamically from MongoDB
+* 🌙 **Dark Mode Toggle**
+* 📧 **Contact Form** with live feedback message
+* 📦 **Seed Script** to populate the database with placeholder Malaysian events
 
 ---
 
-## Getting Started
+### 📁 Tech Stack
 
-Follow these instructions to set up and run the Valco project locally.
+| Layer    | Technology                 |
+| -------- | -------------------------- |
+| Backend  | Node.js + Express          |
+| Frontend | HTML, CSS, JavaScript, EJS |
+| Database | MongoDB (Mongoose ODM)     |
+| Styling  | CSS3 + Responsive Design   |
 
-### Prerequisites
+---
 
-Make sure you have [Node.js](https://nodejs.org) installed.
+### 🚀 How to Run Locally
 
-### Installation
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/AdhamWalid/valco.git
-    cd valco
-    ```
-
-2. Install the necessary packages:
-    ```bash
-    npm install
-    ```
-
-3. Configure environment variables in the `.env` file:
-    ```env
-    PORT=your_port_number
-    MONGODB_URI=your_mongodb_connection_string
-    ```
-
-### Running the Application
-
-To start the application, use either of the following commands:
+1. **Clone the repository**
 
 ```bash
-nodemon app.js
+git clone https://github.com/yourusername/myticket.git
+cd myticket
 ```
-or 
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **Start MongoDB**
+
+Make sure you have MongoDB running locally (default URI: `mongodb://localhost:27017`).
+
+4. **Seed the database**
+
+```bash
+node seed.js
+```
+
+This will populate your `tazkarti` database with sample Malaysian events.
+
+5. **Run the app**
+
 ```bash
 node app.js
 ```
----
-### Support
-Thank you for using this project! If you encounter any issues or have feedback, please reach out.
+
+6. **Visit in browser**
+
+```bash
+http://localhost:3000
+```
 
 ---
 
-Happy chatting! 🎉
+### 📂 Project Structure
 
-Made with Love By Adham.
+```
+myticket/
+│
+├── models/
+│   └── Event.js             # Mongoose schema for events
+├── public/
+│   └── styles/
+│       └── main.css         # Global styling and dark mode
+├── views/
+│   ├── index.ejs            # Homepage
+│   ├── events.ejs           # Events listing
+│   ├── about.ejs            # About page
+│   ├── contact.ejs          # Contact page
+│
+├── app.js                   # Main server file (Express app)
+├── seed.js                  # Seed script to add dummy events
+├── package.json
+└── README.md
+```
+
+---
+
+### 🛠 Contact Form Success Alerts
+
+* When a message is submitted via the Contact page, the user receives a **success toast**.
+* This is done using a URL query flag and JavaScript alert injection:
+
+  ```js
+  res.redirect("/contact?success=1");
+  ```
+
+---
+
+### 🌄 Sample Event Titles in DB
+
+* Coldplay Live in Kuala Lumpur
+* Ramadan Bazaar Cyberjaya
+* Penang Food Festival
+* Malaysia Tech Expo
+* Langkawi LIMA Maritime Show
+
+> All events are Malaysia-based and styled with placeholder images from `via.placeholder.com`.
+
+---
+
+### 🔒 To Do / Optional Features
+
+* [ ] Add authentication (user login)
+* [ ] Add ticket inventory system
+* [ ] Payment gateway integration
+* [ ] Admin dashboard to manage events
+* [ ] Email service for contact form
+
+---
+
+### 👤 Author
+
+**Adham Walid**
+📍 City University Malaysia
+📧 [adhamwalid1990@hotmail.com](mailto:adhamwalid1990@hotmail.com)
+🌐 [GitHub](https://github.com/AdhamWalid)
+
+---
