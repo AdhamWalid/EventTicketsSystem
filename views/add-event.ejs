@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Event - Admin Only</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="logo">MyTicket</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/events">Events</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <button id="themeToggle">Toggle Theme</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <div class="form-container">
+      <div class="form-box">
+        <h2>Add New Event (Admin)</h2>
+        <form action="/add-event?admin=secret123" method="POST">
+          <div class="input-group">
+            <input type="text" name="title" placeholder="Event Title" required>
+          </div>
+          <div class="input-group">
+            <input type="date" name="date" required>
+          </div>
+          <div class="input-group">
+            <input type="text" name="location" placeholder="Location" required>
+          </div>
+          <div class="input-group">
+            <input type="text" name="country" placeholder="Country" required>
+          </div>
+          <div class="input-group">
+            <input type="text" name="artist" placeholder="Artist Name" required>
+          </div>
+          <div class="input-group">
+            <input type="number" name="price" placeholder="Ticket Price" required>
+          </div>
+          <div class="input-group">
+            <input type="text" name="imageUrl" placeholder="Image URL" required>
+          </div>
+          <div class="input-group">
+            <textarea name="description" placeholder="Event Description" required></textarea>
+          </div>
+          <button type="submit" class="btn">Add Event</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 MyTicket. Admin Panel.
+  </footer>
+
+  <!-- THEME SCRIPT -->
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+</body>
+</html>

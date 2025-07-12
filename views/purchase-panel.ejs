@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirm Purchase - MyTicket</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="logo">MyTicket</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/events">Events</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <button id="themeToggle">Toggle Theme</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <div class="form-container">
+      <div class="form-box" style="max-width: 800px;">
+        <h2>Confirm Your Purchase</h2>
+
+        <!-- Event Details + Ticket Summary -->
+        <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 250px;">
+            <img src="<%= event.imageUrl %>" alt="Event Image" style="width: 100%; border-radius: 10px; object-fit: cover;">
+          </div>
+
+          <div style="flex: 1; min-width: 250px;">
+            <h3><%= event.title %></h3>
+            <p><strong>Date:</strong> <%= new Date(event.date).toDateString() %></p>
+            <p><strong>Location:</strong> <%= event.location %>, <%= event.country %></p>
+            <p><strong>Artist:</strong> <%= event.artist %></p>
+            <p><strong>Ticket Price:</strong> RM<%= event.price.toFixed(2) %></p>
+            <p><strong>Tickets:</strong> <%= ticketCount %></p>
+            <br>
+            <hr>
+            <br>
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Promo-code:">
+            </div>
+            <p><strong>Total:</strong> <span style="color: rgb(215, 0, 0); font-weight: bold;">RM<%= total.toFixed(2) %></span></p>
+
+            <form action="/confirm-purchase" method="POST">
+              <input type="hidden" name="name" value="<%= name %>">
+              <input type="hidden" name="email" value="<%= email %>">
+              <input type="hidden" name="eventTitle" value="<%= event.title %>">
+              <input type="hidden" name="ticketCount" value="<%= ticketCount %>">
+              <button class="btn" type="submit">Confirm Purchase</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 MyTicket. All rights reserved.
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+</body>
+</html>
