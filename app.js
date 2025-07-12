@@ -5,17 +5,14 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const path = require("path");
-const multer = require("multer");
-const bcrypt = require("bcryptjs");
 const chalk = require("chalk");
-const { profile } = require("console");
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 const port = process.env.PORT || 3030;
 const log = console.log;
-const Sentiment = require("sentiment");
-const sentiment = new Sentiment();
+const fs = require('fs');
+
 
 // Connect to MongoDB
 mongoose
@@ -52,7 +49,17 @@ const eventSchema = mongoose.Schema({
   imageUrl: { type: String, required: true },
 });
 
+const transactionSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  eventTitle: { type: String, required: true },
+  ticketCount: { type: Number, required: true },
+  totalAmount: { type: Number, required: true },
+  purchaseDate: { type: Date, default: Date.now },
+});
+
 const Event = mongoose.model("Events", eventSchema);
+const Transaction = mongoose.model("Transactions", transactionSchema);
 
 // Routes
 app.get("/", async (req, res) => {
@@ -160,18 +167,44 @@ app.post("/purchase", async (req, res) => {
   }
 });
 
-app.post("/confirm-purchase", (req, res) => {
+app.post("/confirm-purchase", async (req, res) => {
   const { name, email, eventTitle, ticketCount } = req.body;
 
-  // Here you would normally save to a database
-  console.log(
-    `Purchase confirmed: ${ticketCount} x ${eventTitle} for ${name} (${email})`
-  );
+  try {
+    const event = await Event.findOne({ title: eventTitle });
 
-  res.send(
-    `<h1>Thank you, ${name}!</h1><p>Your purchase for ${ticketCount} tickets to <strong>${eventTitle}</strong> is confirmed.<br>See you there.</p>`
-  );
+    if (!event) {
+      return res.status(404).send("Event not found.");
+    }
+
+    const totalAmount = event.price * ticketCount;
+
+    const transaction = new Transaction({
+      name,
+      email,
+      eventTitle,
+      ticketCount,
+      totalAmount
+    });
+
+    await transaction.save();
+
+res.render("ticket", {
+  name,
+  email,
+  event,
+  ticketCount,
+  total: totalAmount.toFixed(2),
+  transactionId: transaction._id.toString()
 });
+
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Failed to complete transaction.");
+  }
+});
+
 
 // 404 Page
 

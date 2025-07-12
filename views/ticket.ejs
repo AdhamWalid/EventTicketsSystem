@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Ticket - MyTicket</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+
+    body {
+  background: #0d0f1f;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Holographic background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='75%25'%3E%3Cstop offset='0%25' stop-color='%23487aff' stop-opacity='0.1'/%3E%3Cstop offset='100%25' stop-color='%230d0f1f' stop-opacity='0.01'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.3;
+  z-index: -1;
+  animation: shimmer 40s linear infinite;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 200% 200%;
+  }
+}
+
+
+  /* body {
+    background: #0d0f1f;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+  } */
+
+  .ticket {
+    max-width: 700px;
+    margin: 50px auto;
+    border: 2px dashed #487aff;
+    border-radius: 12px;
+    padding: 30px;
+    background: #1e2133;
+    box-shadow: 0 0 40px rgba(72, 138, 255, 0.3);
+    
+  }
+
+  .ticket-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .ticket-header h2, .ticket-header h3 {
+    color: #fff;
+  }
+
+  .ticket-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 1em;
+  }
+
+  .ticket-section div {
+    flex: 1 1 45%;
+    color: #ccc;
+  }
+
+  .qr-code {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .ticket-footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.85em;
+    color: #aaa;
+  }
+
+  img {
+    border-radius: 10px;
+  }
+
+  .qr-code img {
+  border: 3px solid #487aff;
+  padding: 10px;
+  background-color: #1a1c2e;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(72, 138, 255, 0.5),
+              0 0 25px rgba(72, 138, 255, 0.3),
+              0 0 35px rgba(72, 138, 255, 0.2);
+  animation: pulseGlow 2.5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.qr-code img:hover {
+  transform: scale(1.05);
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(72, 138, 255, 0.5),
+                0 0 25px rgba(72, 138, 255, 0.3),
+                0 0 35px rgba(72, 138, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(72, 138, 255, 0.9),
+                0 0 35px rgba(72, 138, 255, 0.6),
+                0 0 45px rgba(72, 138, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(72, 138, 255, 0.5),
+                0 0 25px rgba(72, 138, 255, 0.3),
+                0 0 35px rgba(72, 138, 255, 0.2);
+  }
+}
+
+</style>
+
+
+</head>
+<body>
+
+  <div class="ticket">
+    <div class="ticket-header">
+      <h2>🎫 Your Ticket</h2>
+      <h3><%= event.title %></h3>
+    </div>
+
+    <div class="ticket-section">
+      <div><strong>Name:</strong> <%= name %></div>
+      <div><strong>Email:</strong> <%= email %></div>
+      <div><strong>Artist:</strong> <%= event.artist %></div>
+      <div><strong>Location:</strong> <%= event.location %>, <%= event.country %></div>
+      <div><strong>Date:</strong> <%= new Date(event.date).toDateString() %></div>
+      <div><strong>Tickets:</strong> <%= ticketCount %></div>
+      <div><strong>Total Paid:</strong> RM<%= total %></div>
+      <div><strong>Transaction ID:</strong> <%= transactionId.slice(-6).toUpperCase() %></div>
+    </div>
+
+    <!-- QR Code Placeholder -->
+    <div class="qr-code">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=<%= transactionId %>&size=120x120&bgcolor=0d0f1f&color=fff" alt="QR Code">
+      <p>Show this QR code at the event entrance</p>
+    </div>
+<!-- https://api.qrserver.com/v1/create-qr-code/?data=<%= transactionId %>&size=120x120&bgcolor=0d0f1f&color=fff -->
+    <div class="ticket-footer">
+      &copy; 2025 MyTicket — This ticket is non-refundable. Please bring a valid ID.
+    </div>
+  </div>
+
+</body>
+</html>
