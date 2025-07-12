@@ -72,13 +72,12 @@ http://localhost:3000
 ```
 myticket/
 │
-
 ├── views/
 │   ├── index.ejs            # Homepage
 │   ├── events.ejs           # Events listing
 │   ├── about.ejs            # About page
 │   ├── contact.ejs          # Contact page
-│   ├── public/
+│   └── public/
 │       └── styles/
 │       └────────── main.css         # Global styling and dark mode
 ├── app.js                   # Main server file (Express app)
