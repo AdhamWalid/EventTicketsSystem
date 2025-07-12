@@ -6,12 +6,12 @@ MyTicket is a modern, responsive ticket booking web application that allows user
 
 ### 📌 Features
 
-* 🔍 **Search Events** by name or date
-* 🎟️ **Purchase Tickets** through a styled form
-* 🗂️ **View Events** dynamically from MongoDB
-* 🌙 **Dark Mode Toggle**
-* 📧 **Contact Form** with live feedback message
-* 📦 **Seed Script** to populate the database with placeholder Malaysian events
+- 🔍 **Search Events** by name or date
+- 🎟️ **Purchase Tickets** through a styled form
+- 🗂️ **View Events** dynamically from MongoDB
+- 🌙 **Dark Mode Toggle**
+- 📧 **Contact Form** with live feedback message
+- 📦 **Seed Script** to populate the database with placeholder Malaysian events
 
 ---
 
@@ -71,7 +71,7 @@ http://localhost:3000
 
 ```
 myticket/
-│          
+│
 
 ├── views/
 │   ├── index.ejs            # Homepage
@@ -91,8 +91,8 @@ myticket/
 
 ### 🛠 Contact Form Success Alerts
 
-* When a message is submitted via the Contact page, the user receives a **success toast**.
-* This is done using a URL query flag and JavaScript alert injection:
+- When a message is submitted via the Contact page, the user receives a **success toast**.
+- This is done using a URL query flag and JavaScript alert injection:
 
   ```js
   res.redirect("/contact?success=1");
@@ -102,11 +102,11 @@ myticket/
 
 ### 🌄 Sample Event Titles in DB
 
-* Coldplay Live in Kuala Lumpur
-* Ramadan Bazaar Cyberjaya
-* Penang Food Festival
-* Malaysia Tech Expo
-* Langkawi LIMA Maritime Show
+- Coldplay Live in Kuala Lumpur
+- Ramadan Bazaar Cyberjaya
+- Penang Food Festival
+- Malaysia Tech Expo
+- Langkawi LIMA Maritime Show
 
 > All events are Malaysia-based and styled with placeholder images from `via.placeholder.com`.
 
@@ -114,11 +114,11 @@ myticket/
 
 ### 🔒 To Do / Optional Features
 
-* [ ] Add authentication (user login)
-* [ ] Add ticket inventory system
-* [ ] Payment gateway integration
-* [ ] Admin dashboard to manage events
-* [ ] Email service for contact form
+- [ ] Add authentication (user login)
+- [ ] Add ticket inventory system
+- [ ] Payment gateway integration
+- [ ] Admin dashboard to manage events
+- [ ] Email service for contact form
 
 ---
 
