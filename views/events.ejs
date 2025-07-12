@@ -125,10 +125,14 @@
 
     <!-- TOGGLE THEME SCRIPT -->
     <script>
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-        });
+  const themeToggle = document.getElementById('themeToggle');
+
+  // Set dark mode by default
+  document.body.classList.add('dark-mode');
+
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
     </script>
 </body>
 </html>

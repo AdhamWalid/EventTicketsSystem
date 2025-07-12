@@ -99,15 +99,9 @@ myticket/
 
 ---
 
-### 🌄 Sample Event Titles in DB
+### 🌄 Add Event to DB
 
-- Coldplay Live in Kuala Lumpur
-- Ramadan Bazaar Cyberjaya
-- Penang Food Festival
-- Malaysia Tech Expo
-- Langkawi LIMA Maritime Show
-
-> All events are Malaysia-based and styled with placeholder images from `via.placeholder.com`.
+- Admins can now add their events manually from the website.
 
 ---
 
