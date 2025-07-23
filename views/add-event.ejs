@@ -6,8 +6,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles/main.css">
+  <style>
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .form-box {
+      width: 100%;
+      max-width: 800px;
+      background-color: var(--form-bg, #1e2133);
+      padding: 35px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(72, 138, 255, 0.2);
+    }
+
+    .form-box h2 {
+      margin-bottom: 25px;
+      text-align: center;
+      color: white;
+    }
+
+    .input-group textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 14px 16px;
+      font-size: 1em;
+      border-radius: 6px;
+      border: 1px solid #555a7d;
+      background-color: #2a2d47;
+      color: white;
+      resize: vertical;
+      outline: none;
+    }
+
+    .input-group textarea:focus {
+      border-color: #4a90e2;
+      box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .form-box {
+        max-width: 100%;
+        padding: 25px 20px;
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="dark-mode">
   <!-- HEADER -->
   <header>
     <div class="container">
@@ -65,14 +113,12 @@
 
   <!-- THEME SCRIPT -->
   <script>
-  const themeToggle = document.getElementById('themeToggle');
+    const themeToggle = document.getElementById('themeToggle');
+    document.body.classList.add('dark-mode');
 
-  // Set dark mode by default
-  document.body.classList.add('dark-mode');
-
-  themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-  });
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
   </script>
 </body>
 </html>
